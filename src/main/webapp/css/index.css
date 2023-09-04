@@ -1,3 +1,6 @@
-container{
-    
+.container{
+    background-color: #f9f6f6;
+}
+.container.margem{
+    background-color: #f9f6f6;
 }
