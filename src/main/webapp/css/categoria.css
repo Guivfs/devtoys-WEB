@@ -1,0 +1,13 @@
+.d-flex  {
+    background-color:hsl(0, 0%, 100%);
+    border: 1px solid;
+    border-color: antiquewhite;
+    
+  }
+    
+.p-2{
+    
+    text-align: center;
+    border: 2px;
+    
+}
