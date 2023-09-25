@@ -1,6 +1,11 @@
-.container{
-    background-color: #f9f6f6;
+#logo{
+    width: 100px;
+    height: 100px;
 }
-.container.margem{
-    background-color: #f9f6f6;
+#nav{
+    padding-left: 0;
+    padding-right: 0;
+}
+.nav-link{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
