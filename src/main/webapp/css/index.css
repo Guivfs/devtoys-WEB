@@ -9,9 +9,14 @@
 #navbar{
     margin-right:90px;
 }
-.nav-link{
+.font{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 #carouselExample{
     background-color: #F8F9FA;
+}
+
+.centralizar{
+    align-items: center;
+    justify-content: center;
 }
