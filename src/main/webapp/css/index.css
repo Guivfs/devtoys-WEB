@@ -19,4 +19,10 @@
 .centralizar{
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.margin{
+    margin-right: 15px;
+    margin-left: 15px;
 }
