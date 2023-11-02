@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,9 +28,7 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid" id="navbar">
                     <a class="nav-link font" href="index.html"><img id="logo" src="assets/img/logo.png"></a>
-                    <a class="nav-link font" href="index.html">HOME</a>
                     <a class="nav-link font" href="html/equipe.html">EQUIPE</a>
-                    <a class="nav-link font disabled" aria-disabled="true" href="">ADMINISTRAÇÃO(DESABILITADO)</a>
                     <a class="nav-link font" href="">LOGIN</a>
                 </div>
         </div>
@@ -39,11 +39,11 @@
                     <a class="nav-link font active" aria-current="page" href="#">Brinquedos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font" href="#">Roupas</a>
+                    <a class="nav-link font" href="jsp/admBrinquedos.jsp">Administra��o de brinquedos</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link font dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Catálogo</a>
+                        aria-expanded="false">Cat�logo</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -77,7 +77,7 @@
                                         <p>HOT WHEELS</p>
                                     </a></div>
                                 <div class="col-2"><a href=""><img src="assets/img/figurinhaacao.png">
-                                        <p>BONECOS DE AÇÃO</p>
+                                        <p>BONECOS DE A��O</p>
                                     </a></div>
                                 <div class="col-2"></div>
                             </div>
@@ -95,7 +95,7 @@
                                         <p>BONECAS</p>
                                     </a></div>
                                 <div class="col-2"><a href=""><img src="assets/img/bebe.png">
-                                        <p>BEBÊS</p>
+                                        <p>BEB�S</p>
                                     </a></div>
                                 <div class="col-2"></div>
                             </div>
