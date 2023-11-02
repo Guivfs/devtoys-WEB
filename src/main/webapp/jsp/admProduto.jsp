@@ -4,13 +4,14 @@
 <%@ page import="java.util.List"%>
 <%@ page import="devtoys.model.Produto"%>
 <%@ page import="devtoys.dao.ProdutoDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de brinquedos</title>
+<title>Administraï¿½ï¿½o</title>
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link
@@ -18,7 +19,7 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<link rel="shortcut icon" href="assets/img/favicon.ico"
+<link rel="shortcut icon" href="../assets/img/favicon.ico"
 	type="image/x-icon">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -41,20 +42,21 @@
 				<div class="container-fluid" id="navbar">
 					<a class="nav-link font" href="../index.jsp"><img id="logo"
 						src="../assets/img/logo.png"></a> <a class="nav-link font"
+						href="../index.jsp">HOME</a> <a class="nav-link font"
 						href="../html/equipe.html">EQUIPE</a> <a class="nav-link font"
-						href="">LOGIN</a>
+						class="nav-link font" href="">LOGIN</a>
 				</div>
 		</div>
 
 		<div class="row">
 			<ul class="nav nav-tabs centralizar">
 				<li class="nav-item"><a class="nav-link font"
-					aria-current="page" href="#">Brinquedos</a></li>
+					aria-current="page" href="../index.jsp">Brinquedos</a></li>
 				<li class="nav-item"><a class="nav-link font active"
-					href="jsp/admBrinquedos.jsp">Administração de brinquedos</a></li>
+					href="admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
-					href="#" role="button" aria-expanded="false">Catálogo</a>
+					href="#" role="button" aria-expanded="false">Catï¿½logo</a>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">Action</a></li>
 						<li><a class="dropdown-item" href="#">Another action</a></li>
@@ -69,47 +71,45 @@
 	</div>
 	<!-- ~~~~~~~~~~~~~~~~ NAVBAR ~~~~~~~~~~~~~~~~ -->
 	<!-- ~~~~~~~~~~~~~~~~ TABELA ~~~~~~~~~~~~~~~~ -->
-	<div class="container"></div>
-	<div class="col-12 text-center">
-		<h3>Lista de brinquedos</h3>
-
+	<div class="container">
+		<div class="col-12" style="display: flex">
+			<h4 class="hover" style="padding: 20px 0px 20px 0px">Lista de
+				brinquedos</h4>
+			<a href="cadastroProduto.jsp"><button type="button" class="btn btn-lg btn-primary" disabled>Primary
+				button</button>
+				</a>
+		</div>
+		<div class="col-12 text-center"></div>
 		<table class="table table-hover">
 			<thead>
 				<tr class="table-group">
 					<th class="col" scope="id">ID</th>
 					<th class="col" scope="nome">Nome</th>
-					<th class="col" scope="preço">Preço</th>
+					<th class="col" scope="preï¿½o">Preï¿½o</th>
 					<th class="col" scope="categoria">Categoria</th>
-					<th class="col" scope="desc">Descrição</th>
+					<th class="col" scope="desc">Descriï¿½ï¿½o</th>
 					<th class="col" scope="img">Imagem</th>
-					<th class="col" scope="acao">Ação</th>
+					<th class="col" scope="acao">Aï¿½ï¿½o</th>
 				</tr>
 			</thead>
-			<%
-			List<Produto> lista = (List<Produto>) request.getAttribute("produtosList");
-
-			for (Produto produto : lista) {
-			%>
-			<tbody class="table-group-divider">
+			<c:forEach items="${produtosList}" var="produto">
 				<tr>
-					<td scope="id"><%=produto.getIdProd()%></td>
-					<td scope="nome"><%=produto.getNomeProd()%></td>
-					<td scope="preço"><%=produto.getPrecoProd()%></td>
-					<td scope="categoria"><%=produto.getCategoriaProd()%></td>
-					<td scope="desc"><%=produto.getDescProd()%></td>
-					<td scope="img"><%=produto.getImgProd()%></td>
-					<td scope="acao">
-						<!-- Adicione ação aqui -->
+					<td>${produto.idProd}</td>
+					<td>${produto.nomeProd}</td>
+					<td>${produto.precoProd}</td>
+					<td>${produto.categoriaProd}</td>
+					<td>${produto.descProd}</td>
+					<td>${produto.imgProd}</td>
+					<td>
+						<button class="btn btn-primary">Atualizar</button>
+						<button class="btn btn-danger">Excluir</button>
 					</td>
 				</tr>
-			</tbody>
-			<%
-			}
-			%>
-
+			</c:forEach>
+			<tr>
+				<td colspan="7">Nenhum produto encontrado.</td>
+			</tr>
 		</table>
-
 	</div>
 </body>
-
 </html>
