@@ -53,7 +53,7 @@ public class ServletProduto extends HttpServlet {
 			} else if (cmd.equalsIgnoreCase("listar")) {
 				List<Produto> produtosList = dao.getProdutos();
 				request.setAttribute("produtosList", produtosList);
-				rd = request.getRequestDispatcher("jsp/admBrinquedos.jsp");
+				rd = request.getRequestDispatcher("jsp/admProduto.jsp");
 
 				
 			} else if (cmd.equalsIgnoreCase("atu")) {

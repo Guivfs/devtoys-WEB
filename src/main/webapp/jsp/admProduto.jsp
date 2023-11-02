@@ -4,13 +4,14 @@
 <%@ page import="java.util.List"%>
 <%@ page import="devtoys.model.Produto"%>
 <%@ page import="devtoys.dao.ProdutoDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de brinquedos</title>
+<title>Administração</title>
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link
@@ -18,7 +19,7 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<link rel="shortcut icon" href="assets/img/favicon.ico"
+<link rel="shortcut icon" href="../assets/img/favicon.ico"
 	type="image/x-icon">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -41,17 +42,18 @@
 				<div class="container-fluid" id="navbar">
 					<a class="nav-link font" href="../index.jsp"><img id="logo"
 						src="../assets/img/logo.png"></a> <a class="nav-link font"
+						href="../index.jsp">HOME</a> <a class="nav-link font"
 						href="../html/equipe.html">EQUIPE</a> <a class="nav-link font"
-						href="">LOGIN</a>
+						class="nav-link font" href="">LOGIN</a>
 				</div>
 		</div>
 
 		<div class="row">
 			<ul class="nav nav-tabs centralizar">
 				<li class="nav-item"><a class="nav-link font"
-					aria-current="page" href="#">Brinquedos</a></li>
+					aria-current="page" href="../index.jsp">Brinquedos</a></li>
 				<li class="nav-item"><a class="nav-link font active"
-					href="jsp/admBrinquedos.jsp">Administração de brinquedos</a></li>
+					href="jsp/admProduto.jsp">Administração de brinquedos</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
 					href="#" role="button" aria-expanded="false">Catálogo</a>
@@ -69,10 +71,14 @@
 	</div>
 	<!-- ~~~~~~~~~~~~~~~~ NAVBAR ~~~~~~~~~~~~~~~~ -->
 	<!-- ~~~~~~~~~~~~~~~~ TABELA ~~~~~~~~~~~~~~~~ -->
-	<div class="container"></div>
-	<div class="col-12 text-center">
-		<h3>Lista de brinquedos</h3>
-
+	<div class="container">
+		<div class="col-12" style="display: flex">
+			<h4 class="hover" style="padding: 20px 0px 20px 0px">Lista de
+				brinquedos</h4>
+			<button type="button" class="btn btn-lg btn-primary" disabled>Primary
+				button</button>
+		</div>
+		<div class="col-12 text-center"></div>
 		<table class="table table-hover">
 			<thead>
 				<tr class="table-group">
@@ -85,31 +91,64 @@
 					<th class="col" scope="acao">Ação</th>
 				</tr>
 			</thead>
-			<%
-			List<Produto> lista = (List<Produto>) request.getAttribute("produtosList");
-
-			for (Produto produto : lista) {
-			%>
-			<tbody class="table-group-divider">
+			<c:forEach items="${produtosList}" var="produto">
 				<tr>
-					<td scope="id"><%=produto.getIdProd()%></td>
-					<td scope="nome"><%=produto.getNomeProd()%></td>
-					<td scope="preço"><%=produto.getPrecoProd()%></td>
-					<td scope="categoria"><%=produto.getCategoriaProd()%></td>
-					<td scope="desc"><%=produto.getDescProd()%></td>
-					<td scope="img"><%=produto.getImgProd()%></td>
-					<td scope="acao">
-						<!-- Adicione ação aqui -->
+					<td>${produto.idProd}</td>
+					<td>${produto.nomeProd}</td>
+					<td>${produto.precoProd}</td>
+					<td>${produto.categoriaProd}</td>
+					<td>${produto.descProd}</td>
+					<td>${produto.imgProd}</td>
+					<td>
+						<button class="btn btn-primary">Atualizar</button>
+						<button class="btn btn-danger">Excluir</button>
 					</td>
 				</tr>
-			</tbody>
-			<%
-			}
-			%>
-
+			</c:forEach>
+			<tr>
+				<td colspan="7">Nenhum produto encontrado.</td>
+			</tr>
 		</table>
 
+
+
+
+
+
+
+
+
+		<div class="container">
+			<h1>Cadastro de Produto</h1>
+			<form action="seu_servlet_de_destino" method="POST"
+				enctype="multipart/form-data">
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome do Produto</label> <input
+						type="text" class="form-control" id="nome" name="nome" required>
+				</div>
+				<div class="mb-3">
+					<label for="preco" class="form-label">Preço do Produto</label> <input
+						type="number" class="form-control" id="preco" name="preco"
+						step="0.01" required>
+				</div>
+				<div class="mb-3">
+					<label for="categoria" class="form-label">Categoria</label> <input
+						type="text" class="form-control" id="categoria" name="categoria"
+						required>
+				</div>
+				<div class="mb-3">
+					<label for="desc" class="form-label">Descrição</label>
+					<textarea class="form-control" id="desc" name="desc" rows="4"
+						required></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="img" class="form-label">Imagem do Produto</label> <input
+						type="file" class="form-control" id="img" name="img"
+						accept="image/*" required>
+				</div>
+				<button type="submit" class="btn btn-primary">Enviar</button>
+			</form>
+		</div>
 	</div>
 </body>
-
 </html>

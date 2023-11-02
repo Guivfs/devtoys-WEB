@@ -44,6 +44,8 @@ public class ProdutoDAO {
 	            produto.setDescProd(rs.getString("descricao"));
 	            produto.setImgProd(rs.getString("imagem"));
 	            produtos.add(produto);
+	            
+	            System.out.println("Produtos: " + produtos);
 	        }
 	    } catch (Exception sqle) {
 	        throw new Exception("Erro ao obter os produtos " + sqle);

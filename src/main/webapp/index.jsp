@@ -27,7 +27,8 @@
             <img src="assets/img/colorido.png">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid" id="navbar">
-                    <a class="nav-link font" href="index.html"><img id="logo" src="assets/img/logo.png"></a>
+                    <a class="nav-link font" href="index.jsp"><img id="logo" src="assets/img/logo.png"></a>
+                    <a class="nav-link font" href="index.jsp">HOME</a>
                     <a class="nav-link font" href="html/equipe.html">EQUIPE</a>
                     <a class="nav-link font" href="">LOGIN</a>
                 </div>
@@ -39,7 +40,7 @@
                     <a class="nav-link font active" aria-current="page" href="#">Brinquedos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font" href="jsp/admBrinquedos.jsp">Administra��o de brinquedos</a>
+                    <a class="nav-link font" href="jsp/admProduto.jsp">Administra��o de brinquedos</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link font dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -67,16 +68,16 @@
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-2"></div>
-                                <div class="col-2"><a href=""><img src="assets/img/game.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/game.png">
                                         <p>GAMES</p>
                                     </a></div>
-                                <div class="col-2"><a href=""><img src="assets/img/mario.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/mario.png">
                                         <p>MARIO</p>
                                     </a></div>
-                                <div class="col-2"><a href=""><img src="assets/img/hotwheels.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/hotwheels.png">
                                         <p>HOT WHEELS</p>
                                     </a></div>
-                                <div class="col-2"><a href=""><img src="assets/img/figurinhaacao.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/figurinhaacao.png">
                                         <p>BONECOS DE A��O</p>
                                     </a></div>
                                 <div class="col-2"></div>
@@ -85,16 +86,16 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <div class="col-2"></div>
-                                <div class="col-2"><a href=""><img src="assets/img/lego.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/lego.png">
                                         <p>LEGO</p>
                                     </a></div>
-                                <div class="col-2"><a href=""><img src="assets/img/jogos.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/jogos.png">
                                         <p>JOGOS</p>
                                     </a></div>
-                                <div class="col-2"><a href=""><img src="assets/img/barbie.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/barbie.png">
                                         <p>BONECAS</p>
                                     </a></div>
-                                <div class="col-2"><a href=""><img src="assets/img/bebe.png">
+                                <div class="col-2 nav-link"><a href=""><img src="assets/img/bebe.png">
                                         <p>BEB�S</p>
                                     </a></div>
                                 <div class="col-2"></div>
