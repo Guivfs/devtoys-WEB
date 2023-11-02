@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administração</title>
+<title>Administraï¿½ï¿½o</title>
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link
@@ -53,10 +53,10 @@
 				<li class="nav-item"><a class="nav-link font"
 					aria-current="page" href="../index.jsp">Brinquedos</a></li>
 				<li class="nav-item"><a class="nav-link font active"
-					href="jsp/admProduto.jsp">Administração de brinquedos</a></li>
+					href="admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
-					href="#" role="button" aria-expanded="false">Catálogo</a>
+					href="#" role="button" aria-expanded="false">Catï¿½logo</a>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">Action</a></li>
 						<li><a class="dropdown-item" href="#">Another action</a></li>
@@ -75,8 +75,9 @@
 		<div class="col-12" style="display: flex">
 			<h4 class="hover" style="padding: 20px 0px 20px 0px">Lista de
 				brinquedos</h4>
-			<button type="button" class="btn btn-lg btn-primary" disabled>Primary
+			<a href="cadastroProduto.jsp"><button type="button" class="btn btn-lg btn-primary" disabled>Primary
 				button</button>
+				</a>
 		</div>
 		<div class="col-12 text-center"></div>
 		<table class="table table-hover">
@@ -84,11 +85,11 @@
 				<tr class="table-group">
 					<th class="col" scope="id">ID</th>
 					<th class="col" scope="nome">Nome</th>
-					<th class="col" scope="preço">Preço</th>
+					<th class="col" scope="preï¿½o">Preï¿½o</th>
 					<th class="col" scope="categoria">Categoria</th>
-					<th class="col" scope="desc">Descrição</th>
+					<th class="col" scope="desc">Descriï¿½ï¿½o</th>
 					<th class="col" scope="img">Imagem</th>
-					<th class="col" scope="acao">Ação</th>
+					<th class="col" scope="acao">Aï¿½ï¿½o</th>
 				</tr>
 			</thead>
 			<c:forEach items="${produtosList}" var="produto">
@@ -109,46 +110,6 @@
 				<td colspan="7">Nenhum produto encontrado.</td>
 			</tr>
 		</table>
-
-
-
-
-
-
-
-
-
-		<div class="container">
-			<h1>Cadastro de Produto</h1>
-			<form action="seu_servlet_de_destino" method="POST"
-				enctype="multipart/form-data">
-				<div class="mb-3">
-					<label for="nome" class="form-label">Nome do Produto</label> <input
-						type="text" class="form-control" id="nome" name="nome" required>
-				</div>
-				<div class="mb-3">
-					<label for="preco" class="form-label">Preço do Produto</label> <input
-						type="number" class="form-control" id="preco" name="preco"
-						step="0.01" required>
-				</div>
-				<div class="mb-3">
-					<label for="categoria" class="form-label">Categoria</label> <input
-						type="text" class="form-control" id="categoria" name="categoria"
-						required>
-				</div>
-				<div class="mb-3">
-					<label for="desc" class="form-label">Descrição</label>
-					<textarea class="form-control" id="desc" name="desc" rows="4"
-						required></textarea>
-				</div>
-				<div class="mb-3">
-					<label for="img" class="form-label">Imagem do Produto</label> <input
-						type="file" class="form-control" id="img" name="img"
-						accept="image/*" required>
-				</div>
-				<button type="submit" class="btn btn-primary">Enviar</button>
-			</form>
-		</div>
 	</div>
 </body>
 </html>
