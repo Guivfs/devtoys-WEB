@@ -30,14 +30,14 @@
                     <a class="nav-link font" href="index.jsp"><img id="logo" src="assets/img/logo.png"></a>
                     <a class="nav-link font" href="index.jsp">HOME</a>
                     <a class="nav-link font" href="html/equipe.html">EQUIPE</a>
-                    <a class="nav-link font" href="">LOGIN</a>
+                    <a class="nav-link font" href="html/loginUsuario.html">LOGIN</a>
                 </div>
         </div>
 
         <div class="row">
             <ul class="nav nav-tabs centralizar">
                 <li class="nav-item">
-                    <a class="nav-link font active" aria-current="page" href="#">Brinquedos</a>
+                    <a class="nav-link font" aria-current="page" href="#">Brinquedos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link font" href="jsp/admProduto.jsp">Administra��o de brinquedos</a>

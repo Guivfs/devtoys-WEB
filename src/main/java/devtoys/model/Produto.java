@@ -12,9 +12,7 @@ public class Produto {
 	
 	
 	// construtor
-	public Produto(int idProd, String nomeProd, float precoProd, String categoriaProd, String descProd,
-			String imgProd) {
-		super();
+	public Produto(int idProd, String nomeProd, float precoProd, String categoriaProd, String descProd,String imgProd) {
 		this.idProd = idProd;
 		this.nomeProd = nomeProd;
 		this.precoProd = precoProd;

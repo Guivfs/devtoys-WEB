@@ -29,30 +29,26 @@ public class ProdutoDAO {
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~ GET ~~~~~~~~~~~~~~~~~~~~~~~~
 	public List<Produto> getProdutos() throws Exception {
-	    List<Produto> produtos = new ArrayList<>();
-	    String SQL = "SELECT * FROM produtos";
-
 	    try {
-	        ps = conn.prepareStatement(SQL);
+	        ps = conn.prepareStatement("SELECT * FROM produtos");
 	        ResultSet rs = ps.executeQuery();
+	        List<Produto> lista = new ArrayList<Produto>();
 	        while (rs.next()) {
-	            Produto produto = new Produto();
-	            produto.setIdProd(rs.getInt("id"));
-	            produto.setNomeProd(rs.getString("nome"));
-	            produto.setPrecoProd(rs.getFloat("preco"));
-	            produto.setCategoriaProd(rs.getString("categoria"));
-	            produto.setDescProd(rs.getString("descricao"));
-	            produto.setImgProd(rs.getString("imagem"));
-	            produtos.add(produto);
-	            
-	            System.out.println("Produtos: " + produtos);
+	        	int id = rs.getInt("idProd");
+	        	String nome = rs.getString("nomeProd");
+	        	float preco = rs.getFloat("precoProd");
+	        	String desc = rs.getString("descProd");
+	        	String categoria = rs.getString("categoriaProd");
+	        	String img = rs.getString("imgProd");
+	            lista.add(new Produto(id,nome,preco,desc,categoria,img));
+	            System.out.println("Produtos: " + lista);
 	        }
+	        return lista;
 	    } catch (Exception sqle) {
 	        throw new Exception("Erro ao obter os produtos " + sqle);
 	    } finally {
 	        ConnectionFactory.closeConnection(conn, ps);
 	    }
-	    return produtos;
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~GET(ONE)~~~~~~~~~~~~~~~~~~~~~~~~

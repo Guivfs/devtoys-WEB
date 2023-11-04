@@ -28,73 +28,69 @@ public class ServletProduto extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 
 		//Este trycatch irá pegar os dados enviados pelos formulario
-		try {
-			if (cmd.equals("incluir") || cmd.equals("atualizar")) {
-				produto.setIdProd(Integer.parseInt(request.getParameter("txtId")));
-				produto.setNomeProd(request.getParameter("txtNome"));
-				produto.setCategoriaProd(request.getParameter("txtCategoria"));
-				produto.setPrecoProd(Float.parseFloat(request.getParameter("txtPreco")));
-				produto.setDescProd(request.getParameter("txtDesc"));
-				produto.setImgProd(request.getParameter("txtImg"));
-			} else {
-				produto.setIdProd(Integer.parseInt(request.getParameter("txtId")));
+				if (cmd != null) {
+					try {
+						produto.setIdProd(Integer.parseInt(request.getParameter("txtId")));
+						produto.setNomeProd(request.getParameter("txtNome"));
+						produto.setCategoriaProd(request.getParameter("txtCategoria"));
+						produto.setPrecoProd(Float.parseFloat(request.getParameter("txtPreco")));
+						produto.setDescProd(request.getParameter("txtDesc"));
+						produto.setImgProd(request.getParameter("txtImg"));
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				try {
+					RequestDispatcher rd = null;
+					dao = new ProdutoDAO();
+					if (cmd.equalsIgnoreCase("incluir")) {
+						dao.salvar(produto);
+						rd = request.getRequestDispatcher("ServletProduto?listar");
+						
+						
+					} else if (cmd.equalsIgnoreCase("listar")) {
+						List<Produto> produtosList = dao.getProdutos();
+						request.setAttribute("produtosList", produtosList);
+						rd = request.getRequestDispatcher("admProduto.jsp");
+						rd.forward(request, response);
+						
+						
+					} else if (cmd.equalsIgnoreCase("atu")) {
+						produto = dao.getProdutoById(produto.getIdProd());
+						HttpSession session = request.getSession(true);
+						session.setAttribute("produto", produto);
+						rd = request.getRequestDispatcher("jsp/atualizarProduto.jsp");
+						
+					} else if (cmd.equalsIgnoreCase("atualizar")) {
+						dao.atualizar(produto);
+						rd = request.getRequestDispatcher("ServletProduto?cmd=listar");
+						
+					}else if (cmd.equalsIgnoreCase("con")) {
+		                produto = dao.getProdutoById(produto.getIdProd());
+		                HttpSession session = request.getSession(true);
+		                session.setAttribute("produto", produto);
+		                rd = request.getRequestDispatcher("jsp/consultarProduto.jsp");
+		                
+		            } else if (cmd.equalsIgnoreCase("exc")) {
+						produto = dao.getProdutoById(produto.getIdProd());
+						HttpSession session = request.getSession(true);
+						session.setAttribute("produto", produto);
+						rd = request.getRequestDispatcher("jsp/excluirProduto.jsp");
+					} else if (cmd.equalsIgnoreCase("excluir")) {
+						dao.excluirProduto(produto.getIdProd());
+						rd = request.getRequestDispatcher("ServletProduto?cmd=listar");
+					}
+
+					//Executa a ação de direcionar para a página JSP
+					rd.forward(request, response);
+				} catch (Exception e) {
+					System.out.println("Erro ao gravar");
+					System.out.println(e.getMessage());
+				}
+				}
 			}
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		try {
-			dao = new ProdutoDAO();
-			// direciona para uma nova página
-			RequestDispatcher rd = null;
-			if (cmd.equalsIgnoreCase("incluir")) {
-				dao.salvar(produto);
-				rd = request.getRequestDispatcher("ServletProduto?cmd=listar");
-			} else if (cmd.equalsIgnoreCase("listar")) {
-				List<Produto> produtosList = dao.getProdutos();
-				request.setAttribute("produtosList", produtosList);
-				rd = request.getRequestDispatcher("jsp/admProduto.jsp");
-
-				
-			} else if (cmd.equalsIgnoreCase("atu")) {
-				produto = dao.getProdutoById(produto.getIdProd());
-				HttpSession session = request.getSession(true);
-				session.setAttribute("produto", produto);
-				rd = request.getRequestDispatcher("jsp/atualizarProduto.jsp");
-				
-			} else if (cmd.equalsIgnoreCase("atualizar")) {
-				dao.atualizar(produto);
-				rd = request.getRequestDispatcher("ServletProduto?cmd=listar");
-				
-			}else if (cmd.equalsIgnoreCase("con")) {
-                produto = dao.getProdutoById(produto.getIdProd());
-                HttpSession session = request.getSession(true);
-                session.setAttribute("produto", produto);
-                rd = request.getRequestDispatcher("jsp/consultarProduto.jsp");
-                
-            } else if (cmd.equalsIgnoreCase("exc")) {
-				produto = dao.getProdutoById(produto.getIdProd());
-				HttpSession session = request.getSession(true);
-				session.setAttribute("produto", produto);
-				rd = request.getRequestDispatcher("jsp/excluirProduto.jsp");
-			} else if (cmd.equalsIgnoreCase("excluir")) {
-				dao.excluirProduto(produto.getIdProd());
-				rd = request.getRequestDispatcher("ServletProduto?cmd=listar");
-			}
-
-			//Executa a ação de direcionar para a página JSP
-			rd.forward(request, response);
-		} catch (Exception e) {
-			System.out.println("Erro ao gravar");
-			System.out.println(e.getMessage());
-			
-		}
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

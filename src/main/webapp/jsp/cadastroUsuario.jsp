@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Cadastro</title>
+<title>Cadastro de Usuário</title>
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link
@@ -60,32 +57,31 @@
 			</ul>
 		</div>
 		<div class="container">
-			<h1>Cadastro de Produto</h1>
-			<form action="seu_servlet_de_destino" method="POST"
-				enctype="multipart/form-data">
-				<div class="mb-3">
-					<label for="nome" class="form-label">Nome do Produto</label> <input
-						type="text" class="form-control" id="nome" name="nome" required>
+			<h1 class="mt-5">Cadastro de Usuário</h1>
+			<form action="CadastrarUsuarioServlet" method="post">
+				<div class="form-group">
+					<label for="nome">Nome:</label> <input type="text"
+						class="form-control" id="nome" name="nome" required>
 				</div>
-				<div class="mb-3">
-					<label for="preco" class="form-label">Preï¿½o do Produto</label> <input
-						type="number" class="form-control" id="preco" name="preco"
-						step="0.01" required>
+
+				<div class="form-group">
+					<label for="email">E-mail:</label> <input type="email"
+						class="form-control" id="email" name="email" required>
 				</div>
-				<div class="mb-3">
-					<label for="categoria" class="form-label">Categoria</label> <input
-						type="text" class="form-control" id="categoria" name="categoria"
-						required>
+
+				<div class="form-group">
+					<label for="senha">Senha:</label> <input type="password"
+						class="form-control" id="senha" name="senha" required>
 				</div>
-				<div class="mb-3">
-					<label for="desc" class="form-label">Descriï¿½ï¿½o</label>
-					<textarea class="form-control" id="desc" name="desc" rows="4"
-						required></textarea>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="tipo" id="admin"
+						value="admin"> <label class="form-check-label" for="admin">
+						Admin </label>
 				</div>
-				<div class="mb-3">
-					<label for="img" class="form-label">Imagem do Produto</label> <input
-						type="file" class="form-control" id="img" name="img"
-						accept="image/*" required>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="tipo"
+						id="usuario" value="usuario" checked> <label
+						class="form-check-label" for="usuario"> Usuário </label>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Enviar</button>

@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.List"%>
 <%@ page import="devtoys.model.Produto"%>
 <%@ page import="devtoys.dao.ProdutoDAO"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="devtoys.controller.ServletProduto"%>
+<%@ page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="javax.naming.InitialContext"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.DataSource"%>
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +48,7 @@
 						src="../assets/img/logo.png"></a> <a class="nav-link font"
 						href="../index.jsp">HOME</a> <a class="nav-link font"
 						href="../html/equipe.html">EQUIPE</a> <a class="nav-link font"
-						class="nav-link font" href="">LOGIN</a>
+						class="nav-link font" href="../html/loginUsuario.html">LOGIN</a>
 				</div>
 		</div>
 
@@ -52,7 +56,7 @@
 			<ul class="nav nav-tabs centralizar">
 				<li class="nav-item"><a class="nav-link font"
 					aria-current="page" href="../index.jsp">Brinquedos</a></li>
-				<li class="nav-item"><a class="nav-link font active"
+				<li class="nav-item"><a class="nav-link font"
 					href="admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
@@ -75,40 +79,76 @@
 		<div class="col-12" style="display: flex">
 			<h4 class="hover" style="padding: 20px 0px 20px 0px">Lista de
 				brinquedos</h4>
-			<a href="cadastroProduto.jsp"><button type="button" class="btn btn-lg btn-primary" disabled>Primary
-				button</button>
-				</a>
+			<a href="cadastroProduto.jsp"><button type="button"
+					class="btn btn-lg btn-primary" disabled>Primary button</button> </a>
 		</div>
 		<div class="col-12 text-center"></div>
-		<table class="table table-hover">
+		<table class="table table-hover" href="ServletProduto?listar"
+			style="width: 100%;">
+			<colgroup>
+				<col style="width: 10%;">
+				<!-- Define a largura da coluna ID -->
+				<col style="width: 20%;">
+				<!-- Define a largura da coluna Nome -->
+				<col style="width: 10%;">
+				<!-- Define a largura da coluna Preço -->
+				<col style="width: 20%;">
+				<!-- Define a largura da coluna Categoria -->
+				<col style="width: 30%;">
+				<!-- Define a largura da coluna Descrição -->
+				<col style="width: 10%;">
+				<!-- Define a largura da coluna Imagem -->
+				<col style="width: 10%;">
+				<!-- Define a largura da coluna Ação -->
+			</colgroup>
 			<thead>
 				<tr class="table-group">
-					<th class="col" scope="id">ID</th>
-					<th class="col" scope="nome">Nome</th>
-					<th class="col" scope="preï¿½o">Preï¿½o</th>
-					<th class="col" scope="categoria">Categoria</th>
-					<th class="col" scope="desc">Descriï¿½ï¿½o</th>
-					<th class="col" scope="img">Imagem</th>
-					<th class="col" scope="acao">Aï¿½ï¿½o</th>
+					<th scope="col">ID</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Preço</th>
+					<th scope="col">Categoria</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Imagem</th>
+					<th scope="col">Ação</th>
 				</tr>
 			</thead>
-			<c:forEach items="${produtosList}" var="produto">
-				<tr>
-					<td>${produto.idProd}</td>
-					<td>${produto.nomeProd}</td>
-					<td>${produto.precoProd}</td>
-					<td>${produto.categoriaProd}</td>
-					<td>${produto.descProd}</td>
-					<td>${produto.imgProd}</td>
-					<td>
-						<button class="btn btn-primary">Atualizar</button>
-						<button class="btn btn-danger">Excluir</button>
-					</td>
-				</tr>
-			</c:forEach>
+			<%
+			try {
+				// Inicializa a conexão com o banco de dados (você pode ter que alterar essas configurações para corresponder ao seu ambiente)
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "root");
+
+				// Consulta SQL para buscar todos os brinquedos
+				String query = "SELECT * FROM produtos";
+				PreparedStatement ps = conn.prepareStatement(query);
+				ResultSet rs = ps.executeQuery();
+
+				// Itera pelos resultados e exibe-os na tabela
+				while (rs.next()) {
+			%>
 			<tr>
-				<td colspan="7">Nenhum produto encontrado.</td>
+				<td><%=rs.getInt("idprod")%></td>
+				<td><%=rs.getString("nomeprod")%></td>
+				<td><%=rs.getFloat("precoprod")%></td>
+				<td><%=rs.getString("categoriaprod")%></td>
+				<td><%=rs.getString("descprod")%></td>
+				<td><%=rs.getString("imgprod")%></td>
+				<td scope="acao">
+					<button class="btn btn-primary">Atualizar</button>
+					<button class="btn btn-danger">Excluir</button>
+				</td>
+
 			</tr>
+			<%
+			}
+			// Fecha os recursos
+			rs.close();
+			ps.close();
+			conn.close();
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+			%>
 		</table>
 	</div>
 </body>

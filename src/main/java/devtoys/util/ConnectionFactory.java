@@ -18,10 +18,8 @@ public class ConnectionFactory {
 			String url = "jdbc:mysql://localhost:3306/dbdevtoys";
 
 			return DriverManager.getConnection(url,login,senha);
-			
-
-
 		} catch (Exception e) {
+			System.out.println("Conexão com o banco de dados estabelecida");
 			throw new Exception(e.getMessage());
 		}
 	}
