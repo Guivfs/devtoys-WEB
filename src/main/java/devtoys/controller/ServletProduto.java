@@ -32,8 +32,8 @@ public class ServletProduto extends HttpServlet {
 					try {
 						produto.setIdProd(Integer.parseInt(request.getParameter("txtId")));
 						produto.setNomeProd(request.getParameter("txtNome"));
-						produto.setCategoriaProd(request.getParameter("txtCategoria"));
-						produto.setPrecoProd(Float.parseFloat(request.getParameter("txtPreco")));
+						produto.setCategoriaProd(request.getParameter("cmbCategoria"));
+						produto.setPrecoProd(Float.parseFloat(request.getParameter("Preco")));
 						produto.setDescProd(request.getParameter("txtDesc"));
 						produto.setImgProd(request.getParameter("txtImg"));
 				} catch (Exception e) {

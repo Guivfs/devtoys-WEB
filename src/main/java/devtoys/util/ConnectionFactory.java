@@ -3,28 +3,28 @@ package devtoys.util;
 import java.sql.*;
 
 public class ConnectionFactory {
-
+	
+	
+	// Este metodo ele cria a nossa conexão com o banco de dados
 	public static Connection getConnection() throws Exception {
-
+		String url = "jdbc:mysql://localhost:3306/dbdevtoys";
+		String login = "root";
+		String senha = "root";
 		try {
-
-			// indica qual � o banco de dados que estou utilizando e seu driver
-
+			// Indica qual driver o banco de dados irá utilizar, no nosso caso o (JDBC -> JAVA DATA BASE CONNECTOR)
 			Class.forName("com.mysql.jdbc.Driver");
-			
-			// estabelece a conexao e retorna uma conexao
-			String login = "root";
-			String senha = "root";
-			String url = "jdbc:mysql://localhost:3306/dbdevtoys";
-
-			return DriverManager.getConnection(url,login,senha);
+			System.out.println("Driver jdbc encontrado!");
+			// Estabelece a conexão com o banco de dados, utilizando url, login e senha e retorna a conexão 
+			Connection connection = DriverManager.getConnection(url,login,senha);
+			System.out.println("Conexão com o banco de dados estabelecida!");
+			return connection;
 		} catch (Exception e) {
-			System.out.println("Conexão com o banco de dados estabelecida");
-			throw new Exception(e.getMessage());
+			throw new Exception("Conexão com o banco mal sucedida"+e.getMessage());
 		}
 	}
 
-	// fecha uma conex�o de tr�s formas: conn, stmt, rs
+	
+	// fecha uma conexão de três formas: conn, stmt, rs
 
 	public static void closeConnection(Connection conn, Statement stmt,
 			ResultSet rs) throws Exception {

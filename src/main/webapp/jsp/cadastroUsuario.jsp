@@ -38,54 +38,55 @@
 
 		<div class="row">
 			<ul class="nav nav-tabs centralizar">
-				<li class="nav-item"><a class="nav-link font active"
+				<li class="nav-item"><a class="nav-link font"
 					aria-current="page" href="#">Brinquedos</a></li>
 				<li class="nav-item"><a class="nav-link font"
-					href="../jsp/admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
-					href="#" role="button" aria-expanded="false">Catï¿½logo</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item" href="#">Separated link</a></li>
-					</ul></li>
+					href="../jsp/admProduto.jsp">Administração de brinquedos</a></li>
 			</ul>
 		</div>
 		<div class="container">
-			<h1 class="mt-5">Cadastro de Usuário</h1>
-			<form action="CadastrarUsuarioServlet" method="post">
-				<div class="form-group">
-					<label for="nome">Nome:</label> <input type="text"
-						class="form-control" id="nome" name="nome" required>
-				</div>
+			<div class="row">
+				<div class="cold-md-7">
+					<h3>Cadastro de Usuário</h3>
+					<hr>
+					<form action="CreateAndFind" method="POST">
+						<div class="form-floating mb-3">
+							<input name="nome" maxlength="40" type="text"
+								class="form-control" id="floatingInput1"> <label>Nome
+								completo</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input name="cpf" maxlength="11" type="text" class="form-control">
+							<label>CPF (apenas números)</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input name="nascimento" type="date" class="form-control"
+								placeholder="Nascimento"> <label>Nascimento</label>
+						</div>
+						<select name="situacao" class="form-select mb-3"
+							aria-label="Default select example">
+							<option value="Inativo" selected>-- Selecione a situação</option>
+							<option>Games</option>
+							<option>Mario</option>
+							<option>HotWhells</option>
+							<option>Acao</option>
+							<option>Lego</option>
+							<option>Jogos</option>
+							<option>Bonecas</option>
+							<option>Bebes</option>>
+						</select>
 
-				<div class="form-group">
-					<label for="email">E-mail:</label> <input type="email"
-						class="form-control" id="email" name="email" required>
+						<button class="btn btn-primary" type="submit">Cadastrar
+							Cliente</button>
+						<button class="btn btn-secondary" type="reset">Limpar
+							Formulário</button>
+					</form>
+					<br>
+					<h5>
+						<a href="../ServletProdutoNovo">Lista de Clientes</a>
+					</h5>
 				</div>
-
-				<div class="form-group">
-					<label for="senha">Senha:</label> <input type="password"
-						class="form-control" id="senha" name="senha" required>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="tipo" id="admin"
-						value="admin"> <label class="form-check-label" for="admin">
-						Admin </label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="tipo"
-						id="usuario" value="usuario" checked> <label
-						class="form-check-label" for="usuario"> Usuário </label>
-				</div>
-
-				<button type="submit" class="btn btn-primary">Enviar</button>
-			</form>
+			</div>
 		</div>
 </body>
 </html>

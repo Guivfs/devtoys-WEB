@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="devtoys.model.Produto"%>
-<%@ page import="devtoys.dao.ProdutoDAO"%>
-<%@ page import="devtoys.controller.ServletProduto"%>
-<%@ page import="java.util.List"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="javax.naming.InitialContext"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.DataSource"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.SQLException"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administraï¿½ï¿½o</title>
+<title>AdministraÃ§Ã£o</title>
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link
@@ -35,10 +31,23 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
 	crossorigin="anonymous"></script>
+<style>
+table {
+	width: 100%;
+}
+
+/* Adiciona um estilo para tornar a tabela responsiva */
+@media ( max-width : 768px) {
+	.table-responsive {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+	}
+}
+</style>
 </head>
 
 <body>
-	<!-- ~~~~~~~~~~~~~~~~ NAVBAR ~~~~~~~~~~~~~~~~ -->
 	<div class="container-fluid --bs-body-bg" id="nav">
 		<div class="row">
 			<img src="../assets/img/colorido.png">
@@ -51,105 +60,75 @@
 						class="nav-link font" href="../html/loginUsuario.html">LOGIN</a>
 				</div>
 		</div>
-
 		<div class="row">
 			<ul class="nav nav-tabs centralizar">
 				<li class="nav-item"><a class="nav-link font"
 					aria-current="page" href="../index.jsp">Brinquedos</a></li>
-				<li class="nav-item"><a class="nav-link font"
-					href="admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
-					href="#" role="button" aria-expanded="false">Catï¿½logo</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item" href="#">Separated link</a></li>
-					</ul></li>
+				<li class="nav-item"><a class="nav-link font active"
+					href="admProduto.jsp">AdministraÃ§Ã£o de produto</a></li>
 			</ul>
 		</div>
 	</div>
-	<!-- ~~~~~~~~~~~~~~~~ NAVBAR ~~~~~~~~~~~~~~~~ -->
-	<!-- ~~~~~~~~~~~~~~~~ TABELA ~~~~~~~~~~~~~~~~ -->
 	<div class="container">
-		<div class="col-12" style="display: flex">
-			<h4 class="hover" style="padding: 20px 0px 20px 0px">Lista de
-				brinquedos</h4>
-			<a href="cadastroProduto.jsp"><button type="button"
-					class="btn btn-lg btn-primary" disabled>Primary button</button> </a>
+		<div class="d-flex justify-content-between align-items-center">
+			<h4 class="mb-4">Lista de Produtos</h4>
+			<a href="cadastroProduto.jsp" class="btn btn-primary">Cadastro de
+				Produto</a>
 		</div>
-		<div class="col-12 text-center"></div>
-		<table class="table table-hover" href="ServletProduto?listar"
-			style="width: 100%;">
-			<colgroup>
-				<col style="width: 10%;">
-				<!-- Define a largura da coluna ID -->
-				<col style="width: 20%;">
-				<!-- Define a largura da coluna Nome -->
-				<col style="width: 10%;">
-				<!-- Define a largura da coluna Preço -->
-				<col style="width: 20%;">
-				<!-- Define a largura da coluna Categoria -->
-				<col style="width: 30%;">
-				<!-- Define a largura da coluna Descrição -->
-				<col style="width: 10%;">
-				<!-- Define a largura da coluna Imagem -->
-				<col style="width: 10%;">
-				<!-- Define a largura da coluna Ação -->
-			</colgroup>
-			<thead>
-				<tr class="table-group">
-					<th scope="col">ID</th>
-					<th scope="col">Nome</th>
-					<th scope="col">Preço</th>
-					<th scope="col">Categoria</th>
-					<th scope="col">Descrição</th>
-					<th scope="col">Imagem</th>
-					<th scope="col">Ação</th>
+		<!-- Adiciona a classe .table-responsive para tornar a tabela responsiva -->
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-1">ID</th>
+						<th class="col-2">Nome</th>
+						<th class="col-1">PreÃ§o</th>
+						<th class="col-2">Categoria</th>
+						<th class="col-2">DescriÃ§Ã£o</th>
+						<th class="col-2">Imagem</th>
+						<th class="col-2">AÃ§Ã£o</th>
+					</tr>
+				</thead>
+				<%
+				try {
+					// Inicializa a conexÃ£o com o banco de dados (vocÃª pode ter que alterar essas configuraÃ§Ãµes para corresponder ao seu ambiente)
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "root");
+
+					// Consulta SQL para buscar todos os brinquedos
+					String query = "SELECT * FROM produtos";
+					PreparedStatement ps = conn.prepareStatement(query);
+					ResultSet rs = ps.executeQuery();
+
+					// Itera pelos resultados e exibe-os na tabela
+					while (rs.next()) {
+				%>
+				<tr>
+					<td><%=rs.getInt("idprod")%></td>
+					<td><%=rs.getString("nomeprod")%></td>
+					<td><%=rs.getFloat("precoprod")%></td>
+					<td><%=rs.getString("categoriaprod")%></td>
+					<td><%=rs.getString("descprod")%></td>
+					<td><img src="<%=rs.getString("imgprod")%>"
+						style="max-width: 100px; max-height: 100px;"></td>
+					<td>
+						<button class="btn btn-primary">Atualizar</button>
+						<button class="btn btn-danger">Excluir</button>
+					</td>
 				</tr>
-			</thead>
-			<%
-			try {
-				// Inicializa a conexão com o banco de dados (você pode ter que alterar essas configurações para corresponder ao seu ambiente)
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "root");
-
-				// Consulta SQL para buscar todos os brinquedos
-				String query = "SELECT * FROM produtos";
-				PreparedStatement ps = conn.prepareStatement(query);
-				ResultSet rs = ps.executeQuery();
-
-				// Itera pelos resultados e exibe-os na tabela
-				while (rs.next()) {
-			%>
-			<tr>
-				<td><%=rs.getInt("idprod")%></td>
-				<td><%=rs.getString("nomeprod")%></td>
-				<td><%=rs.getFloat("precoprod")%></td>
-				<td><%=rs.getString("categoriaprod")%></td>
-				<td><%=rs.getString("descprod")%></td>
-				<td><%=rs.getString("imgprod")%></td>
-				<td scope="acao">
-					<button class="btn btn-primary">Atualizar</button>
-					<button class="btn btn-danger">Excluir</button>
-				</td>
-
-			</tr>
-			<%
-			}
-			// Fecha os recursos
-			rs.close();
-			ps.close();
-			conn.close();
-			} catch (Exception e) {
-			e.printStackTrace();
-			}
-			%>
-		</table>
+				<%
+				}
+				// Fecha os recursos
+				rs.close();
+				ps.close();
+				conn.close();
+				} catch (Exception e) {
+				e.printStackTrace();
+				}
+				%>
+			</table>
+		</div>
 	</div>
 </body>
+
 </html>

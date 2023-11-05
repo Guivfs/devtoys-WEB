@@ -1,28 +1,27 @@
-#logo{
-    width: 100px;
-    height: 100px;
-}
-#nav{
-    padding-left: 0;
-    padding-right: 0;
-}
-#navbar{
-    margin-right:90px;
-}
-.font{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-#carouselExample{
-    background-color: #F8F9FA;
+#logo {
+	width: 100px;
+	height: 100px;
 }
 
-.centralizar{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+#nav {
+	padding-left: 0;
+	padding-right: 0;
 }
 
-.margin{
-    margin-right: 15px;
-    margin-left: 15px;
+#navbar {
+	margin-right: 90px;
 }
+
+.font {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#carouselExample {
+	background-color: #F8F9FA;
+}
+
+.centralizar {
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}S

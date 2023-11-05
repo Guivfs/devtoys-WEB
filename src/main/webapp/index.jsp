@@ -37,23 +37,10 @@
         <div class="row">
             <ul class="nav nav-tabs centralizar">
                 <li class="nav-item">
-                    <a class="nav-link font" aria-current="page" href="#">Brinquedos</a>
+                    <a class="nav-link font active" aria-current="page" href="index.jsp">Brinquedos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font" href="jsp/admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link font dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Catï¿½logo</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                    </ul>
+                    <a class="nav-link font" href="jsp/admProduto.jsp">Administração de produto</a>
                 </li>
             </ul>
         </div>
@@ -78,7 +65,7 @@
                                         <p>HOT WHEELS</p>
                                     </a></div>
                                 <div class="col-2 nav-link"><a href=""><img src="assets/img/figurinhaacao.png">
-                                        <p>BONECOS DE Aï¿½ï¿½O</p>
+                                        <p>BONECOS DE AÇÃO</p>
                                     </a></div>
                                 <div class="col-2"></div>
                             </div>
@@ -96,7 +83,7 @@
                                         <p>BONECAS</p>
                                     </a></div>
                                 <div class="col-2 nav-link"><a href=""><img src="assets/img/bebe.png">
-                                        <p>BEBï¿½S</p>
+                                        <p>BEBÊS</p>
                                     </a></div>
                                 <div class="col-2"></div>
                             </div>

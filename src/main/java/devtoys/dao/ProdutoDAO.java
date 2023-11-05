@@ -9,12 +9,15 @@ import java.util.List;
 import devtoys.model.Produto;
 import devtoys.util.ConnectionFactory;
 
+//DAO (DATA ACEESS OBJECT) -> CAMADA DE PERSISTÊNCIA
 public class ProdutoDAO {
 
 	// classes de banco de dados
 	private Connection conn; // abre a conexao do banco de dados
 	private PreparedStatement ps; // permite que scripts SQL sejam executados a partir do Java
 	private ResultSet rs; // representa as tabelas
+	
+	
 	// classe JavaBean
 	private Produto produto;
 

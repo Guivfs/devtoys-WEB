@@ -41,55 +41,55 @@
 
 		<div class="row">
 			<ul class="nav nav-tabs centralizar">
-				<li class="nav-item"><a class="nav-link font active"
+				<li class="nav-item"><a class="nav-link font "
 					aria-current="page" href="#">Brinquedos</a></li>
-				<li class="nav-item"><a class="nav-link font"
-					href="../jsp/admProduto.jsp">Administraï¿½ï¿½o de brinquedos</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link font dropdown-toggle" data-bs-toggle="dropdown"
-					href="#" role="button" aria-expanded="false">Catï¿½logo</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li><a class="dropdown-item" href="#">Separated link</a></li>
-					</ul></li>
+				<li class="nav-item"><a class="nav-link font active"
+					href="../jsp/admProduto.jsp">Administração de produto</a></li>
 			</ul>
 		</div>
 		<div class="container">
-			<h1>Cadastro de Produto</h1>
-			<form action="seu_servlet_de_destino" method="POST"
-				enctype="multipart/form-data">
-				<div class="mb-3">
-					<label for="nome" class="form-label">Nome do Produto</label> <input
-						type="text" class="form-control" id="nome" name="nome" required>
-				</div>
-				<div class="mb-3">
-					<label for="preco" class="form-label">Preï¿½o do Produto</label> <input
-						type="number" class="form-control" id="preco" name="preco"
-						step="0.01" required>
-				</div>
-				<div class="mb-3">
-					<label for="categoria" class="form-label">Categoria</label> <input
-						type="text" class="form-control" id="categoria" name="categoria"
-						required>
-				</div>
-				<div class="mb-3">
-					<label for="desc" class="form-label">Descriï¿½ï¿½o</label>
-					<textarea class="form-control" id="desc" name="desc" rows="4"
-						required></textarea>
-				</div>
-				<div class="mb-3">
-					<label for="img" class="form-label">Imagem do Produto</label> <input
-						type="file" class="form-control" id="img" name="img"
-						accept="image/*" required>
-				</div>
+        <div class="row">
+            <div class="col-md-7 mx-auto">
+                <h3>Cadastro de Produto</h3>
+                <hr>
+                <form action="admProduto.jsp" method="get" enctype="multipart/form-data">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtNome" name="txtNome" required>
+                        <label for="txtNome">Nome do Produto</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="numPreco" name="numPreco" step="0.01" required>
+                        <label for="numPreco">Preço do Produto</label>
+                    </div>
+                    <select name="cmbCategoria" class="form-select mb-3" aria-label="Default select example">
+                        <option value="" disabled selected>-- Selecione a categoria</option>
+                        <option value="Games">Games</option>
+                        <option value="Mario">Mario</option>
+                        <option value="HotWhells">HotWhells</option>
+                        <option value="Acao">Acao</option>
+                        <option value="Lego">Lego</option>
+                        <option value="Jogos">Jogos</option>
+                        <option value="Bonecas">Bonecas</option>
+                        <option value="Bebes">Bebes</option>
+                    </select>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="txtDesc" name="txtDesc" rows="4" required></textarea>
+                        <label for="txtDesc">Descrição</label>
+                    </div>
+                    <div class="form mb-3">
+                        <label for="txtImg">Imagem do Produto</label>
+                        <input type="file" class="form-control" id="txtImg" name="txtImg" accept="image/*" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Enviar</button>
+                    <button class="btn btn-secondary" type="reset">Limpar Formulário</button>
+                    <a href="admProduto.jsp"><button class="btn btn-secundary" type="button">Voltar a lista de produtos</button></a>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
 
-				<button type="submit" class="btn btn-primary">Enviar</button>
-			</form>
-		</div>
+    </div>
+
 </body>
 </html>

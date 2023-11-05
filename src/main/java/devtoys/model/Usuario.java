@@ -1,53 +1,60 @@
 package devtoys.model;
 
+// Objeto(Usuario)
 public class Usuario {
-    private int id;
-    private String email;
-    private String senha;
-    private String permissao;
+	private int id;
+	private String email;
+	private String senha;
+	private String permissao;
 
-    // Construtor vazio
-    public Usuario() {
-    }
+	// Construtor vazio
+	public Usuario() {
+	}
 
-    // Construtor com parâmetros
-    public Usuario(int id, String email, String senha, String permissao) {
-        this.id = id;
-        this.email = email;
-        this.senha = senha;
-        this.permissao = permissao;
-    }
+	// Construtor to string
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", email=" + email + ", senha=" + senha + ", permissao=" + permissao + "]";
+	}
 
-    // Getters e setters
-    public int getId() {
-        return id;
-    }
+	// Construtor com parâmetros
+	public Usuario(int id, String email, String senha, String permissao) {
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		this.permissao = permissao;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	// Getters e Setters
+	public int getId() {
+		return id;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public String getPermissao() {
-        return permissao;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public void setPermissao(String permissao) {
-        this.permissao = permissao;
-    }
+	public String getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(String permissao) {
+		this.permissao = permissao;
+	}
 }
