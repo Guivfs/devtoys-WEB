@@ -127,8 +127,13 @@ table {
 					<td><img src="<%=rs.getString("imgprod")%>"
 						style="max-width: 100px; max-height: 100px;"></td>
 					<td>
-						<button class="btn btn-primary"><a href="atualizarProduto.jsp">Atualizar</a></button>
-						<button class="btn btn-danger"><a href="../ServletProduto?cmd=excluir&id=<%=rs.getInt("idprod")%>">Excluir</a></button>
+					<form action="../ServletProduto?cmd=atu" method="post">
+					<input type="hidden" name="txtId" value="<%=rs.getInt("idProd")%>"/>
+					<button class="btn btn-primary">Atualizar</button>
+					</form>
+					<button class="btn btn-danger"><a href="../ServletProduto?cmd=exc&txtId=<%=rs.getInt("idprod")%>">Excluir</a></button>
+					
+						
 					</td>
 				</tr>
 				 <%

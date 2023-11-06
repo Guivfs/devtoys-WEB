@@ -64,7 +64,8 @@
             <div class="col-md-7">
                 <h3>Atualização de Produto</h3>
                 <hr>
-                <form action="UpdateProductServlet" method="post">
+                <form action="ServletProduto" method="post">
+                <input type="hidden" name="cmd" value="atualizar"/>
                     <div class="form-floating mb-3">
                         <input name="nomeProduto" maxlength="40" type="text" class="form-control" id="floatingInput1" required>
                         <label for="floatingInput1">Nome do Produto</label>

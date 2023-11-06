@@ -113,8 +113,9 @@ public class ProdutoDAO {
 
         String SQL = "UPDATE produtos SET nomeprod = ?, precoprod = ?, categoriaprod = ?, descprod = ?, imgprod = ? WHERE idprod = ?";
 
+        PreparedStatement ps = conn.prepareStatement(SQL);
         try {
-            PreparedStatement ps = conn.prepareStatement(SQL);
+        	
             ps.setString(1, produto.getNomeProd());
             ps.setFloat(2, produto.getPrecoProd());
             ps.setString(3, produto.getCategoriaProd());
@@ -126,7 +127,7 @@ public class ProdutoDAO {
         } catch (Exception sqle) {
             throw new Exception("Erro ao atualizar dados " + sqle);
         } finally {
-            ConnectionFactory.closeConnection(conn);
+            ConnectionFactory.closeConnection(conn, ps);
         }
     }
 

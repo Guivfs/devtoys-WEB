@@ -67,10 +67,10 @@ public class ServletProduto extends HttpServlet {
                 produto = dao.getProdutoById(produto.getIdProd());
                 HttpSession session = request.getSession(true);
                 session.setAttribute("produto", produto);
-                rd = request.getRequestDispatcher("jsp/excluirProduto.jsp");
+                rd = request.getRequestDispatcher("jsp/deletarProduto.jsp");
             } else if (cmd.equalsIgnoreCase("excluir")) {
                 dao.excluirProduto(produto.getIdProd());
-                rd = request.getRequestDispatcher("ServletProduto?cmd=listar");
+                rd = request.getRequestDispatcher("jsp/admProduto.jsp");
             }
 
             rd.forward(request, response);
