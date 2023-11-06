@@ -25,6 +25,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
         crossorigin="anonymous"></script>
+        <style>
+    .card {
+        display: flex;
+    }
+
+    .box {
+        flex: 1; /* Expande para preencher o espaço igualmente */
+    }
+</style>
         
 </head>
 
@@ -135,8 +144,8 @@
                         String categoriaprod = rs.getString("categoriaprod");
                         String imgprod = rs.getString("imgprod");
 				%>                
-				<div class="card" style="width: 18rem;">
-  					<img class="card-img" src="<%= imgprod %>" alt="<%= imgprod %>">
+				<div class="card" style="float: left; width: 50%; width: 250px; height:100px " >
+  					<img class="card-img" style=" width: 250px; height:250px" src="<%= imgprod %>" alt="<%= imgprod %>">
   					<div class="card-body">
     					<h5 class="card-title"><%=nomeprod%></h5>
    						<p class="card-text"><%= descricao %></p>
