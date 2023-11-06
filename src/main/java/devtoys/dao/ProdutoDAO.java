@@ -33,7 +33,7 @@ public class ProdutoDAO {
 	//~~~~~~~~~~~~~~~~~~~~~~~~ GET ~~~~~~~~~~~~~~~~~~~~~~~~
 	public List<Produto> getProdutos() throws Exception {
 	    try {
-	        ps = conn.prepareStatement("SELECT * FROM produtos");
+	    	PreparedStatement ps = conn.prepareStatement("SELECT * FROM produtos");
 	        ResultSet rs = ps.executeQuery();
 	        List<Produto> lista = new ArrayList<Produto>();
 	        while (rs.next()) {
@@ -57,27 +57,27 @@ public class ProdutoDAO {
 	//~~~~~~~~~~~~~~~~~~~~~~~~GET(ONE)~~~~~~~~~~~~~~~~~~~~~~~~
 	public Produto getProdutoById(int idProduto) throws Exception {
 	    Produto produto = null;
-	    String SQL = "SELECT * FROM produtos WHERE id = ?";
+	    String SQL = "SELECT * FROM produtos WHERE idprod = ?";
 
 	    try {
 	        ps = conn.prepareStatement(SQL);
 	        ps.setInt(1, idProduto);
 	        ResultSet rs = ps.executeQuery();
 	        if (rs.next()) {
-	            produto = new Produto();
-	            produto.setIdProd(rs.getInt("id"));
-	            produto.setNomeProd(rs.getString("nome"));
-	            produto.setPrecoProd(rs.getFloat("preco"));
-	            produto.setCategoriaProd(rs.getString("categoria"));
-	            produto.setDescProd(rs.getString("descricao"));
-	            produto.setImgProd(rs.getString("imagem"));
+	        	int id = rs.getInt("idProd");
+	        	String nome = rs.getString("nomeProd");
+	        	float preco = rs.getFloat("precoProd");
+	        	String desc = rs.getString("descProd");
+	        	String categoria = rs.getString("categoriaProd");
+	        	String img = rs.getString("imgProd");
+	            produto = new Produto(id,nome,preco,desc,categoria,img);
 	        }
+	        return produto;
 	    } catch (Exception sqle) {
 	        throw new Exception("Erro ao obter o produto " + sqle);
 	    } finally {
 	        ConnectionFactory.closeConnection(conn, ps);
 	    }
-	    return produto;
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~ INSERIR ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,16 +86,15 @@ public class ProdutoDAO {
 			throw new Exception("O valor passado não pode ser nulo");
 		}
 
-		String SQL = "INSERT INTO produtos (id, nome, preco, categoria, descricao, imagem) VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO produtos (nomeprod, precoprod, categoriaprod, descprod, imgprod) VALUES (?, ?, ?, ?, ?)";
 
 		try {
 			ps = conn.prepareStatement(SQL);
-			ps.setInt(1, produto.getIdProd());
-			ps.setString(2, produto.getNomeProd());
-			ps.setFloat(3, produto.getPrecoProd());
-			ps.setString(4, produto.getCategoriaProd());
-			ps.setString(5, produto.getDescProd());
-			ps.setString(6, produto.getImgProd());
+			ps.setString(1, produto.getNomeProd());
+			ps.setFloat(2, produto.getPrecoProd());
+			ps.setString(3, produto.getCategoriaProd());
+			ps.setString(4, produto.getDescProd());
+			ps.setString(5, produto.getImgProd());
 			ps.executeUpdate();
 		} catch (Exception sqle) {
 			throw new Exception("Erro ao excluir dados " + sqle);
@@ -109,7 +108,7 @@ public class ProdutoDAO {
 	        throw new Exception("O valor passado não pode ser nulo");
 	    }
 
-	    String SQL = "UPDATE produtos SET nome = ?, preco = ?, categoria = ?, descricao = ?, imagem = ? WHERE id = ?";
+	    String SQL = "UPDATE produtos SET nomeprod = ?, precoprod = ?, categoriaprod = ?, descoprod = ?, imgprod = ? WHERE id = ?";
 
 	    try {
 	        ps = conn.prepareStatement(SQL);
@@ -118,7 +117,6 @@ public class ProdutoDAO {
 	        ps.setString(3, produto.getCategoriaProd());
 	        ps.setString(4, produto.getDescProd());
 	        ps.setString(5, produto.getImgProd());
-	        ps.setInt(6, produto.getIdProd());
 	        ps.executeUpdate();
 	    } catch (Exception sqle) {
 	        throw new Exception("Erro ao atualizar dados " + sqle);
@@ -127,12 +125,13 @@ public class ProdutoDAO {
 	    }
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~ EXCLUIR ~~~~~~~~~~~~~~~~~~~~~~~~
-	public void excluirProduto(int idProduto) throws Exception {
-	    String SQL = "DELETE FROM produtos WHERE id = ?";
-
+	public void excluirProduto(Produto produto) throws Exception {
+		if (produto == null)
+			throw new Exception("O valor passado nao pode ser nulo");
 	    try {
+	    	String SQL = "DELETE FROM produtos WHERE idprod = ?";
 	        ps = conn.prepareStatement(SQL);
-	        ps.setInt(1, idProduto);
+	        ps.setInt(1, produto.getIdProd());
 	        ps.executeUpdate();
 	    } catch (Exception sqle) {
 	        throw new Exception("Erro ao excluir dados " + sqle);

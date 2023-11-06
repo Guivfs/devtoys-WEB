@@ -32,6 +32,10 @@
 	integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
 	crossorigin="anonymous"></script>
 <style>
+a {
+color: white;
+text-decoration: none;
+}
 table {
 	width: 100%;
 }
@@ -112,8 +116,8 @@ table {
 					<td><img src="<%=rs.getString("imgprod")%>"
 						style="max-width: 100px; max-height: 100px;"></td>
 					<td>
-						<button class="btn btn-primary">Atualizar</button>
-						<button class="btn btn-danger">Excluir</button>
+						<button class="btn btn-primary"><a href="atualizarProduto.jsp">Atualizar</a></button>
+						<button class="btn btn-danger"><a href="../ServletProduto?cmd=excluir&id=<%=rs.getInt("idprod")%>">Excluir</a></button>
 					</td>
 				</tr>
 				<%

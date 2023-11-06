@@ -1,4 +1,6 @@
 package devtoys.model;
+/* Java Bean - É uma classe que contenha todos os atributos privados, possua getters e setters
+para seus atributos e usada para encapsular e abstrair uma entidade */
 
 // Objeto(Produto)
 public class Produto {
