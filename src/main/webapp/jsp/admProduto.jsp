@@ -80,7 +80,7 @@ table {
 	<div class="container">
 		<div class="d-flex justify-content-between align-items-center">
 			<h4 class="mb-4">Lista de Produtos</h4>
-			<a href="cadastroProduto.jsp" class="btn btn-primary">Cadastro de
+			<a href="../html/cadastroProduto.html" class="btn btn-primary">Cadastro de
 				Produto</a>
 		</div>
 		<!-- Adiciona a classe .table-responsive para tornar a tabela responsiva -->
@@ -101,7 +101,7 @@ table {
 				try {
 					// Inicializa a conexão com o banco de dados (você pode ter que alterar essas configurações para corresponder ao seu ambiente)
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "root");
 
 					// Consulta SQL para buscar todos os brinquedos
 					String query = "SELECT * FROM produtos";
