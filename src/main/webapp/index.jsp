@@ -1,5 +1,10 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.SQLException"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,6 +14,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
@@ -19,6 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
         crossorigin="anonymous"></script>
+        
 </head>
 
 <body>
@@ -106,9 +113,46 @@
         <div class="row">
         </div>
         <div class="row">
-            <h3>Loren</h3>
+            <h2 align="center">Brinquedos</h2>
             <div style="background-color: #f8f9fa">
-                <h1>Loren</h1>
+               <%
+				try {
+					// Inicializa a conexão com o banco de dados (você pode ter que alterar essas configurações para corresponder ao seu ambiente)
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "");
+
+					// Consulta SQL para buscar todos os brinquedos
+					String query = "SELECT * FROM produtos";
+					PreparedStatement ps = conn.prepareStatement(query);
+					ResultSet rs = ps.executeQuery();
+
+					// Itera pelos resultados e exibe-os na tabela
+					  // Iterar pelos resultados e gerar um card para cada item
+                    while (rs.next()) {
+                        String nomeprod = rs.getString("nomeprod");
+                        String descricao = rs.getString("descprod");
+                        float preco = rs.getFloat("precoprod");
+                        String categoriaprod = rs.getString("categoriaprod");
+                        String imgprod = rs.getString("imgprod");
+				%>                
+				<div class="card" style="width: 18rem;">
+  					<img class="card-img" src="<%= imgprod %>" alt="<%= imgprod %>">
+  					<div class="card-body">
+    					<h5 class="card-title"><%=nomeprod%></h5>
+   						<p class="card-text"><%= descricao %></p>
+    					<a href="#" class="btn btn-primary">Ver Produto</a>
+  					</div>
+				</div>
+                 <%
+				}
+				// Fecha os recursos
+				rs.close();
+				ps.close();
+				conn.close();
+				} catch (Exception e) {
+				e.printStackTrace();
+				}
+				%>
             </div>
         </div>
     </div>

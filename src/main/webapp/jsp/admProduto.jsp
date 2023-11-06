@@ -5,6 +5,10 @@
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.SQLException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+<%@ page import="devtoys.model.Produto"%>
 <!DOCTYPE html>
 <html>
 
@@ -93,7 +97,7 @@ table {
 				try {
 					// Inicializa a conexão com o banco de dados (você pode ter que alterar essas configurações para corresponder ao seu ambiente)
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "root");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdevtoys", "root", "");
 
 					// Consulta SQL para buscar todos os brinquedos
 					String query = "SELECT * FROM produtos";
@@ -101,10 +105,17 @@ table {
 					ResultSet rs = ps.executeQuery();
 
 					// Itera pelos resultados e exibe-os na tabela
-					while (rs.next()) {
+					  // Iterar pelos resultados e gerar um card para cada item
+                    while (rs.next()) {
+                    	int idProd = rs.getInt("idProd");
+                        String nomeprod = rs.getString("nomeprod");
+                        String descricao = rs.getString("descprod");
+                        float preco = rs.getFloat("precoprod");
+                        String categoriaprod = rs.getString("categoriaprod");
+                        String imgprod = rs.getString("imgprod");
 				%>
 				<tr>
-					<td><%=rs.getInt("idprod")%></td>
+					<td><%=rs.getInt("idProd")%></td>
 					<td><%=rs.getString("nomeprod")%></td>
 					<td><%=rs.getFloat("precoprod")%></td>
 					<td><%=rs.getString("categoriaprod")%></td>
@@ -116,7 +127,7 @@ table {
 						<button class="btn btn-danger">Excluir</button>
 					</td>
 				</tr>
-				<%
+				 <%
 				}
 				// Fecha os recursos
 				rs.close();

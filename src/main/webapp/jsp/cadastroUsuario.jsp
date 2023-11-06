@@ -49,42 +49,18 @@
 				<div class="cold-md-7">
 					<h3>Cadastro de Usuário</h3>
 					<hr>
-					<form action="CreateAndFind" method="POST">
-						<div class="form-floating mb-3">
-							<input name="nome" maxlength="40" type="text"
-								class="form-control" id="floatingInput1"> <label>Nome
-								completo</label>
-						</div>
-						<div class="form-floating mb-3">
-							<input name="cpf" maxlength="11" type="text" class="form-control">
-							<label>CPF (apenas números)</label>
-						</div>
-						<div class="form-floating mb-3">
-							<input name="nascimento" type="date" class="form-control"
-								placeholder="Nascimento"> <label>Nascimento</label>
-						</div>
-						<select name="situacao" class="form-select mb-3"
-							aria-label="Default select example">
-							<option value="Inativo" selected>-- Selecione a situação</option>
-							<option>Games</option>
-							<option>Mario</option>
-							<option>HotWhells</option>
-							<option>Acao</option>
-							<option>Lego</option>
-							<option>Jogos</option>
-							<option>Bonecas</option>
-							<option>Bebes</option>>
-						</select>
-
-						<button class="btn btn-primary" type="submit">Cadastrar
-							Cliente</button>
-						<button class="btn btn-secondary" type="reset">Limpar
-							Formulário</button>
+					<form method="post" action="../CadastrarUsuarioServlet">
+					<input type="hidden" name="cmd" value="salvar"/>
+						<label>Nome completo</label>
+						 <input type="text" id="nomeUsuario" name="nomeUsuario" required class=form-control><br>
+						<label>E-mail</label>
+						<input type="email" id="email" name="email" required class=form-control><br>
+						<label>Senha</label>
+						<input type="password" id="senha" name="senha" required class=form-control><br>
+						<input class="btn btn-primary" type="submit" value="Cadastrar">
+						<button class="btn btn-secondary" type="reset">Limpar Formulário</button>
 					</form>
 					<br>
-					<h5>
-						<a href="../ServletProdutoNovo">Lista de Clientes</a>
-					</h5>
 				</div>
 			</div>
 		</div>

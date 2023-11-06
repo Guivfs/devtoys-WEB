@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="devtoys.controller.ServletProduto"%>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.SQLException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+<%@ page import="devtoys.model.Produto"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,54 +52,63 @@
 		<div class="row">
 			<ul class="nav nav-tabs centralizar">
 				<li class="nav-item"><a class="nav-link font "
-					aria-current="page" href="#">Brinquedos</a></li>
+					aria-current="page" href="../index.jsp">Brinquedos</a></li>
 				<li class="nav-item"><a class="nav-link font active"
 					href="../jsp/admProduto.jsp">Administração de produto</a></li>
 			</ul>
 		</div>
 		<div class="container">
-        <div class="row">
-            <div class="col-md-7 mx-auto">
-                <h3>Cadastro de Produto</h3>
-                <hr>
-                <form action="admProduto.jsp" method="get" enctype="multipart/form-data">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="txtNome" name="txtNome" required>
-                        <label for="txtNome">Nome do Produto</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="numPreco" name="numPreco" step="0.01" required>
-                        <label for="numPreco">Preço do Produto</label>
-                    </div>
-                    <select name="cmbCategoria" class="form-select mb-3" aria-label="Default select example">
-                        <option value="" disabled selected>-- Selecione a categoria</option>
-                        <option value="Games">Games</option>
-                        <option value="Mario">Mario</option>
-                        <option value="HotWhells">HotWhells</option>
-                        <option value="Acao">Acao</option>
-                        <option value="Lego">Lego</option>
-                        <option value="Jogos">Jogos</option>
-                        <option value="Bonecas">Bonecas</option>
-                        <option value="Bebes">Bebes</option>
-                    </select>
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" id="txtDesc" name="txtDesc" rows="4" required></textarea>
-                        <label for="txtDesc">Descrição</label>
-                    </div>
-                    <div class="form mb-3">
-                        <label for="txtImg">Imagem do Produto</label>
-                        <input type="file" class="form-control" id="txtImg" name="txtImg" accept="image/*" required>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Enviar</button>
-                    <button class="btn btn-secondary" type="reset">Limpar Formulário</button>
-                    <a href="admProduto.jsp"><button class="btn btn-secundary" type="button">Voltar a lista de produtos</button></a>
-                </form>
-                <br>
-            </div>
-        </div>
-    </div>
+			<div class="row">
+				<div class="col-md-7 mx-auto">
+					<h3>Cadastro de Produto</h3>
+					<hr>
+					<form method="post" action="../ServletProduto">
+					<input type="hidden" name="cmd" value="salvar">
+						<div class="form-floating mb-3">
+							<label for="txtId" id="txtId" name="txtId"></label> <input
+								type="text" class="form-control" id="txtNome" name="txtNome"
+								required> <label for="txtNome">Nome do Produto></label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="number" class="form-control" id="txtPreco"
+								name=txtPreco step="0.01" required> <label
+								for="txtPreco">Preço do Produto</label>
+						</div>
+						<select name="cmbCategoria" class="form-select mb-3"
+							aria-label="Default select example">
+							<option value="" disabled selected>-- Selecione a
+								categoria</option>
+							<option value="Games">Games</option>
+							<option value="Mario">Mario</option>
+							<option value="HotWhells">HotWhells</option>
+							<option value="Acao">Acao</option>
+							<option value="Lego">Lego</option>
+							<option value="Jogos">Jogos</option>
+							<option value="Bonecas">Bonecas</option>
+							<option value="Bebes">Bebes</option>
+						</select>
+						<div class="form-floating mb-3">
+							<textarea class="form-control" id="txtDesc" name="txtDesc"
+								rows="4" required></textarea>
+							<label for="txtDesc">Descrição</label>
+						</div>
+						<div class="form mb-3">
+							<label for="txtImg">Imagem do Produto</label> <input type="file"
+								class="form-control" id="txtImg" name="txtImg" accept="image/*"
+								required>
+						</div>
+						<input class="btn btn-primary" type="submit" value="Salvar"></input>
+						<button class="btn btn-secondary" type="reset">Limpar
+							Formulário</button>
+						<a href="admProduto.jsp"><button class="btn btn-secundary"
+								type="button">Voltar a lista de produtos</button></a>
+					</form>
+					<br>
+				</div>
+			</div>
+		</div>
 
-    </div>
+	</div>
 
 </body>
 </html>

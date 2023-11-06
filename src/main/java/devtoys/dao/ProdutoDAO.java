@@ -82,13 +82,11 @@ public class ProdutoDAO {
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~ INSERIR ~~~~~~~~~~~~~~~~~~~~~~~~
 	public void salvar(Produto produto) throws Exception {
-		if (produto == null) {
+		if (produto == null) 
 			throw new Exception("O valor passado não pode ser nulo");
-		}
-
-		String SQL = "INSERT INTO produtos (id, nome, preco, categoria, descricao, imagem) VALUES (?, ?, ?, ?, ?, ?)";
-
 		try {
+			String SQL = "INSERT INTO produtos (idprod, nomeprod, precoprod, categoriaprod, descprod, imgprod) VALUES (?, ?, ?, ?, ?, ?)";
+			
 			ps = conn.prepareStatement(SQL);
 			ps.setInt(1, produto.getIdProd());
 			ps.setString(2, produto.getNomeProd());
@@ -98,11 +96,11 @@ public class ProdutoDAO {
 			ps.setString(6, produto.getImgProd());
 			ps.executeUpdate();
 		} catch (Exception sqle) {
-			throw new Exception("Erro ao excluir dados " + sqle);
+			throw new Exception("Erro ao salvar dados " + sqle);
 		} finally {
 			ConnectionFactory.closeConnection(conn, ps);
 		}
-	}
+		}
 	//~~~~~~~~~~~~~~~~~~~~~~~~ ATUALIZAR ~~~~~~~~~~~~~~~~~~~~~~~~
 	public void atualizar(Produto produto) throws Exception {
 	    if (produto == null) {

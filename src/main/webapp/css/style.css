@@ -1,0 +1,15 @@
+.card-container {
+            display: flex;
+            flex-wrap: wrap; /* Quebra a linha quando o espaço não é suficiente */
+            justify-content: space-between; /* Distribui igualmente o espaço entre os cards */
+        }
+
+ .card {
+            width: 30%; /* Ajuste a largura desejada para cada card */
+        margin-bottom: 20px; /* Espaço entre os cards */
+        }
+.card-img{
+    max-width: 100%; /* Largura máxima é 100% do contêiner pai */
+    height: auto; 
+
+}
