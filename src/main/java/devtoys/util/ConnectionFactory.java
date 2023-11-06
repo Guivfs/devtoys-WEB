@@ -9,7 +9,7 @@ public class ConnectionFactory {
 	public static Connection getConnection() throws Exception {
 		String url = "jdbc:mysql://localhost:3306/dbdevtoys";
 		String login = "root";
-		String senha = "root";
+		String senha = "";
 		try {
 			// Indica qual driver o banco de dados irá utilizar, no nosso caso o (JDBC -> JAVA DATA BASE CONNECTOR)
 			Class.forName("com.mysql.jdbc.Driver");
